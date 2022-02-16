@@ -1,12 +1,10 @@
 import { RequestHandler } from 'express';
-import { completeTodo, createTodo, getTodo } from '../controllers/urlShortener';
+import { completeTodo, createTodo, decodeUrl, encodeUrl, getTodo, staticUrl } from '../controllers/urlShortener';
 import logger from '../utils/logger';
 
-export const createTodoRoute: RequestHandler = async (req, res) => {
+export const encodeUrlRoute: RequestHandler = async (req, res) => {
   try {
-    const { text, description } = req.body;
-
-    const response = await createTodo({ text, description });
+    const response = await encodeUrl(req.body.url);
     const responseCode = response.success === true ? 200 : 400;
     return res.status(responseCode).json(response);
   } catch (error) {
@@ -15,27 +13,24 @@ export const createTodoRoute: RequestHandler = async (req, res) => {
   }
 };
 
-export const getTodoRoute: RequestHandler = async (req, res) => {
+export const decodeUrlRoute: RequestHandler = async (req, res) => {
   try {
-    const { completed } = req.query as { completed: 'completed' | 'in_progress' | 'all' };
-    const response = await getTodo(completed);
+    const response = await decodeUrl(req.body.url);
     const responseCode = response.success === true ? 200 : 400;
     return res.status(responseCode).json(response);
   } catch (error) {
     logger.error(error);
-    return res.status(500).json({ success: false, error: 'Could not fetch Data.' });
+    return res.status(500).json({ success: false, error: 'Could not fetch Data' });
   }
 };
 
-export const completeTodoRoute: RequestHandler = async (req, res) => {
+export const staticUrlRoute: RequestHandler = async (req, res) => {
   try {
-    console.log({ id: req.params.id });
-
-    const response = await completeTodo(Number(req.params.id));
+    const response = await staticUrl(req.body.url);
     const responseCode = response.success === true ? 200 : 400;
     return res.status(responseCode).json(response);
   } catch (error) {
     logger.error(error);
-    return res.status(500).json({ success: false, error: 'Could not fetch Data.' });
+    return res.status(500).json({ success: false, error: 'Could not fetch Data' });
   }
 };

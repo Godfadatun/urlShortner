@@ -6,8 +6,8 @@ const router = express.Router();
 
 router.get('/', (_, res) => res.json({ success: true, message: 'User gateway v1 up.' }));
 
-router.get('/encode', encodeUrlRoute);
-router.post('/decode', decodeUrlRoute);
+router.get('/encode', getTodoRoute);
+router.post('/decode', createTodoRoute);
 router.patch('/static/:id', completeTodoRoute);
 
 export default router;

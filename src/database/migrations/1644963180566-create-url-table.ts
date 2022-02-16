@@ -41,5 +41,7 @@ export class createUrlTable1644963180566 implements MigrationInterface {
     );
   }
 
-  public async down(queryRunner: QueryRunner): Promise<void> {}
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropTable('discount');
+  }
 }
