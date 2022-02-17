@@ -1,7 +1,6 @@
 /* eslint-disable consistent-return */
 import { RequestHandler } from 'express';
-import { url } from 'inspector';
-import { decodeUrl, encodeUrl, staticUrl } from '../controllers/urlShortener';
+import { decodeUrl, encodeUrl } from '../controllers/urlShortener';
 import logger from '../utils/logger';
 
 export const encodeUrlRoute: RequestHandler = async (req, res) => {

@@ -1,11 +1,8 @@
 /* eslint-disable no-throw-literal */
-import { completeToDoSchema, createToDoSchema, encodeUrlSchema } from '../authSchema/urlShortenerSchema';
+import { encodeUrlSchema } from '../authSchema/urlShortenerSchema';
 import { theResponse } from '../utils/interface';
 import { ResourceNotFoundError } from '../utils/errors';
 import { getQueryRunner } from '../database/helpers/db';
-// import { Todo } from '../database/models/ToDo';
-import logger from '../utils/logger';
-import { completeToDoDTO, createToDoDTO } from '../dto/urlShortenerDTO';
 import { Url } from '../database/models/url';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
