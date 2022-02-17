@@ -6,8 +6,8 @@ export const createToDoSchema = joi.object().keys({
   description: joi.string().max(500).required(),
 });
 
-export const getToDoSchema = joi.object().keys({
-  completed: joi.string().valid('completed', 'in_progress', 'all').required(),
+export const encodeUrlSchema = joi.object().keys({
+  url: joi.string().required(),
 });
 
 export const completeToDoSchema = joi.object().keys({
